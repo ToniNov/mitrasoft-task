@@ -41,7 +41,7 @@ export const AboutMe = () => {
         </BaseButton>
         <Card.Body>
           <Document
-            file="src/assets/cv/Cv.pdf"
+            file={Cv}
             onLoadSuccess={onDocumentLoadSuccess}
             options={options}
           >
