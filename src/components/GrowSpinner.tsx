@@ -20,7 +20,7 @@ export const LadingLine: FC<LadingLinePropsType> = () => {
       }
     `}
       </style>
-      <ProgressBar animated now={100} variant="custom" />;
+      <ProgressBar animated now={100} variant="custom" />
     </>
   );
 };
