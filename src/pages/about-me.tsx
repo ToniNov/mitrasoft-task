@@ -40,11 +40,7 @@ export const AboutMe = () => {
           Download Cv
         </BaseButton>
         <Card.Body>
-          <Document
-            file={Cv}
-            onLoadSuccess={onDocumentLoadSuccess}
-            options={options}
-          >
+          <Document file={Cv} onLoadSuccess={onDocumentLoadSuccess} options={options}>
             {Array.from(new Array(numPages), (_el, index) => (
               <Page key={`page_${index + 1}`} pageNumber={index + 1} />
             ))}

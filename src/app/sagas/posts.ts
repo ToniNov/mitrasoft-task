@@ -24,7 +24,7 @@ export function* fetchPostsByIdWorkerSaga(
   action: ReturnType<typeof fetchPostsByIdSagaAC>,
 ): Generator<any, void, PostType[]> {
   yield put(setAppStatusAC('loading'));
-  // yield delay(5000);
+  yield delay(5000);
   const resData = yield call(postAPI.getPostsById, action.id);
 
   try {

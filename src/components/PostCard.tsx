@@ -34,7 +34,7 @@ export const PostCard: FC<PropsType> = ({ id }) => {
   }, [id]);
   const handlerShowComments = (id: number): void => {
     setShow(!shouldShow);
-    dispatch(fetchCommentsSagaAC(id.toString()));
+    dispatch(fetchCommentsSagaAC(`${id}`));
   };
 
   return (

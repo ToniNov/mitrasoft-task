@@ -1,17 +1,37 @@
+import { useEffect } from 'react';
+
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link, Outlet } from 'react-router-dom';
 
+import { setAppStatusAC } from '../app/reducers/app-reducer';
 import { selectLoading } from '../app/reducers/selectors';
 import { ReactComponent as Logo } from '../assets/logo.svg';
-import { useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 
-import { LadingLine } from './GrowSpinner';
+import { BaseLineSpinner } from './BaseLineSpinner';
+import { BaseSpinner } from './BaseSpinner';
 
 export const Header = () => {
+  const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectLoading);
+  const isInitialized = useAppSelector(selectLoading);
+
+  useEffect(() => {
+    if (isInitialized === 'idle') {
+      const timeoutId = setTimeout(() => {
+        dispatch(setAppStatusAC('succeeded'));
+      }, 2000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [dispatch, isInitialized]);
+
+  if (isInitialized === 'idle') {
+    return <BaseSpinner />;
+  }
 
   return (
     <>
@@ -46,7 +66,7 @@ export const Header = () => {
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
-      {isLoading === 'loading' && <LadingLine />}
+      {isLoading === 'loading' && <BaseLineSpinner variant="custom" />}
       <Outlet />
     </>
   );

@@ -7,20 +7,20 @@ type PropsType = {
   variant?: 'custom' | 'success' | 'danger' | 'warning' | 'info' | string;
 };
 
-type LadingLinePropsType = ProgressBarProps & PropsType;
+type BaseLineSpinnerPropsType = ProgressBarProps & PropsType;
 
-export const LadingLine: FC<LadingLinePropsType> = () => {
+export const BaseLineSpinner: FC<BaseLineSpinnerPropsType> = ({ variant }) => {
   return (
     <>
       <style type="text/css">
         {`
       .bg-custom {
-        background-color: #01A09A;
+        background-color: #01A09A!important;
         width: '100%'
       }
     `}
       </style>
-      <ProgressBar animated now={100} variant="custom" />
+      <ProgressBar animated now={100} variant={variant} />
     </>
   );
 };
