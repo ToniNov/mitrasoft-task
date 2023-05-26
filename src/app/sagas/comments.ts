@@ -1,5 +1,5 @@
 import { SagaIterator } from 'redux-saga';
-import { call, delay, put, takeEvery } from 'redux-saga/effects';
+import { call, delay, put, takeLatest } from 'redux-saga/effects';
 
 import { commentsAPI } from '../../api/JSONPlaceholderApi';
 import { CommentType } from '../../types/types';
@@ -25,7 +25,7 @@ export const fetchCommentsSagaAC = (id: string) =>
   ({ type: 'POSTS/FETCH-COMMENTS-SAGA-AC', id } as const);
 
 export function* watchCommentsSaga(): SagaIterator {
-  yield takeEvery('POSTS/FETCH-COMMENTS-SAGA-AC', fetchCommentsWorkerSaga);
+  yield takeLatest('POSTS/FETCH-COMMENTS-SAGA-AC', fetchCommentsWorkerSaga);
 }
 
 export default function* rootCommentsSaga(): Generator<SagaIterator, void> {
